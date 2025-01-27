@@ -1,0 +1,459 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('images/background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-color: #e0e0e0;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  width: 100%; /* Genişlik arttırıldı */
+  max-width: 350px; /* Maksimum genişlik arttı */
+  height: auto;
+  min-height: 450px; /* Yükseklik biraz azaltıldı */
+  border-radius: 10px; /* Daha yuvarlak köşeler */
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background-image: linear-gradient(to top right, #f9f9f9, #ffffff);
+  padding: 25px 0; /* Daha geniş iç alan */
+}
+
+/* Face Styles */
+.face {
+  position: relative;
+  width: 120px;
+  height: 140px;
+  margin: 60px auto 30px;
+  background-color: #ffd3b6;
+  border-radius: 45% 45% 40% 40%;
+}
+
+/* Hair Style */
+.hair {
+  position: absolute;
+  top: -30px;
+  left: -20px;
+  right: -20px;
+  height: 80px;
+  background-color: #4a3219;
+  border-radius: 40% 40% 30% 30%;
+}
+
+/* Eyebrows */
+.eyebrows {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.eyebrow {
+  width: 25px;
+  height: 4px;
+  background-color: #4a3219;
+  border-radius: 3px;
+  transition: transform 0.3s;
+}
+
+/* Eyes */
+.eyes {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.eye {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.pupil {
+  width: 10px;
+  height: 10px;
+  background-color: #243946;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s;
+}
+
+/* Nose */
+.nose {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 14px;
+  background-color: #ffbea3;
+  border-radius: 35% 35% 45% 45%;
+}
+
+/* Mouth */
+.mouth {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 15px;
+  border: 2px solid #243946;
+  border-radius: 0 0 50px 50px;
+  border-top: 0;
+  transition: all 0.3s;
+}
+
+/* Hands */
+.hands {
+  position: relative;
+}
+
+.hand {
+  position: absolute;
+  top: -6px;
+  width: 60px;
+  height: 60px;
+  transition: transform 0.5s ease-in-out;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hand.left {
+  left: 35px;
+  transform-origin: right bottom;
+}
+
+.hand.right {
+  right: 35px;
+  transform-origin: left bottom;
+}
+
+.finger {
+  width: 10px;
+  height: 35px;
+  background-color: #ffd3b6;
+  border-radius: 10px;
+  position: relative;
+}
+
+.finger.thumb {
+  height: 25px;
+  transform: rotate(-20deg);
+  transform-origin: bottom;
+}
+
+/* Form Styles */
+.login {
+  position: relative;
+  margin: 20px;
+  width: auto;
+}
+
+.login label {
+  position: relative;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.login input {
+  width: 100%;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  outline: none;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.login input:focus {
+  background-color: #ffffff;
+}
+
+.fa {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.password-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #243946;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 14px;
+}
+
+.login-button:active {
+  transform: scale(0.95);
+}
+
+/* Animations */
+.password:focus ~ .hand.right,
+.password-button:active ~ .hand.right {
+  transform: translate(-70px, -60px) rotate(-20deg);
+}
+
+.password:focus ~ .hand.left,
+.password-button:active ~ .hand.left {
+  transform: translate(70px, -60px) rotate(20deg);
+}
+
+.username:focus ~ .face .pupil {
+  transform: translate(-50%, -120%);
+}
+
+.password:focus ~ .face .pupil {
+  transform: translate(-50%, 120%);
+}
+
+.username:focus ~ .face .eyebrow.left,
+.password:focus ~ .face .eyebrow.left {
+  transform: rotate(15deg);
+}
+
+.username:focus ~ .face .eyebrow.right,
+.password:focus ~ .face .eyebrow.right {
+  transform: rotate(-15deg);
+}
+
+.username:focus ~ .face .mouth,
+.password:focus ~ .face .mouth {
+  height: 10px;
+  width: 35px;
+  border-radius: 0 0 40px 40px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 320px) {
+  .center {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .face {
+    margin: 40px auto 20px;
+  }
+
+  .login {
+    margin: 15px;
+  }
+
+  .login input {
+    padding: 10px 35px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .center {
+    height: 100vh;
+    transform: translate(-50%, 0);
+    top: 0;
+  }
+
+  .face {
+    margin: 20px auto;
+  }
+
+  .login input {
+    padding: 10px 35px;
+  }
+}
+
+
+/* CUSTOM STYLE */
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker background for better focus */
+  z-index: 1000;
+  overflow-y: auto;
+  animation: fade-in 0.4s ease-out; /* Fade-in effect for modal background */
+}
+
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  overflow-y: auto;
+  animation: fade-in 0.4s ease-out;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 80%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slide-down 0.4s ease-out;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #ff6347;
+}
+
+/* Fade-in Animation for Modal Background */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Slide-down Animation for Modal Content */
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* Modal Body */
+.modal-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+  color: #555;
+}
+
+.modal-body strong {
+  color: #495057; /* Slightly darker color for labels */
+}
+
+/* Custom Footer */
+.custom-footer {
+  width: 80%;
+  max-width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  padding: 0px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Coffee Button */
+.coffee-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 12px 18px;
+  margin: 10px auto;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.coffee-btn:hover {
+  color: #495057;
+  background-color: #e9ecef;
+}
+
+/* Fade-in Animation for Modal Background */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Slide-down Animation for Modal Content */
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
